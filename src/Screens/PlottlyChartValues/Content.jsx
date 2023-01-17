@@ -19,7 +19,7 @@ export default function Content() {
 
     return (
         <Box sx={{
-            marginRight: 2,
+            marginRight: 0,
             marginLeft: 2,
             marginTop: 9
         }}

@@ -212,6 +212,7 @@ import Content from './Content';
 import DraggableCards from '../../Components/DraggableCards';
 import { Grid } from '@mui/material';
 import { Dragact } from 'dragact';
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 
 const drawerWidth = 500;
 const color = "#000080"
@@ -269,10 +270,53 @@ const useStyles = makeStyles({
     },
     appBar: {
         left: '50px !important ',
-    }
+    },
+    switchLabel: {
+        color: "gray",
+        margin: "0px",
+        fontSize: "14px",
+    },
+    imageBox: {
+        margin: "10px 0px",
+        backgroundColor: "#D3D3D3",
+        minHeight: 200,
+    },
+    cardSubTitle: {
+        display: "flex",
+        alignSelf: "end",
+    },
+    toggleContainer: {
+        height: "60px",
+        width: "20px",
+        background: "blue",
+        alignSelf: "center",
+        display: "flex",
+        alignItems: "center",
+        borderRadius: "1px 10px 10px 1px",
+        color: "white",
+    },
+    toggleSubContainer: {
+        height: "90%",
+        width: "100%",
+        display: "flex",
+        alignSelf: "center",
+        justifyContent: "end",
+        flexDirection: "column",
+    },
+    toggleLabel: {
+        fontSize: "9px",
+        transform: "rotate(90deg)",
+        alignSelf: "center",
+        margin: "0px",
+        width: "100%",
+        fontWeight: 800,
+    },
+    toggleIcon: {
+        alignSelf: "center",
+        margin: "10px 0px 0px 0px",
+        height: "40%",
+    },
 });
-
-
 
 const fakeData = [
     { GridX: 0, GridY: 0, w: 25, h: 2, key: '0' },
@@ -307,7 +351,7 @@ export default function PlottlyChartValues() {
                 root: classes.appBar
             }}>
                 <Toolbar>
-                    {open ? <IconButton onClick={handleDrawerClose} color="inherit">
+                    {/* {open ? <IconButton onClick={handleDrawerClose} color="inherit">
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton> : <IconButton
                         color="inherit"
@@ -318,12 +362,25 @@ export default function PlottlyChartValues() {
                     >
                         <ChevronRightIcon />
                     </IconButton>
-                    }
+                    } */}
                     <Typography variant="h6" noWrap component="div">
-                        Application 1
+                        Client Logo  |  Application 1
                     </Typography>
                 </Toolbar>
             </AppBar>
+            <Box
+                className={classes?.toggleContainer}
+                onClick={() => setOpen(!open)}
+            >
+                <Box className={classes?.toggleSubContainer}>
+                    <p className={classes?.toggleLabel}>
+                        {!open ? "OPEN" : "CLOSE"}{" "}
+                    </p>
+                    <span className={classes?.toggleIcon}>
+                        {!open ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                    </span>
+                </Box>
+            </Box>
             <Drawer
                 sx={{
                     width: drawerWidth,
@@ -343,6 +400,20 @@ export default function PlottlyChartValues() {
                 <Divider />
                 <Content />
             </Drawer>
+            <Box
+                className={classes?.toggleContainer}
+                style={{ marginLeft: "-35px" }}
+                onClick={() => setOpen(!open)}
+            >
+                <Box className={classes?.toggleSubContainer}>
+                    <p className={classes?.toggleLabel}>
+                        {!open ? "OPEN" : "CLOSE"}{" "}
+                    </p>
+                    <span className={classes?.toggleIcon}>
+                        {!open ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                    </span>
+                </Box>
+            </Box>
             <DrawerHeader>
             </DrawerHeader>
             <Main open={open} style={{ marginTop: "64px" }}>
